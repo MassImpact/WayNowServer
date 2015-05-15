@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}All Users{% endblock %}
+            <!-- DataTables CSS -->
+<!--<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css">
+    <!-- jQuery -->
+<!--<script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
+    <!-- DataTables -->
+<!--<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.js"></script>-->
+{% block breadcrumb %}
+<ul class="page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>
+                <a href="/dashboard">Home</a>
+                <i class="fa fa-angle-right"></i>
+            </li>
+            <li>
+                All Users
+            </li>
+        </ul>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-12">
+<!-- END EXAMPLE TABLE PORTLET-->
+<!-- BEGIN EXAMPLE TABLE PORTLET-->
+<div class="portlet box blue-madison">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-globe"></i>Users
+        </div>
+    </div>
+    <div class="portlet-body">
+    <table id="allUsersDisplay" class="table table-striped table-bordered table-hover no-footer" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th style="text-align: center">Active</th>
+                <th style="text-align: center; width: 280px">Username</th>
+                <th style="text-align: center; min-width: 125px">Phone#</th>
+                <th style="text-align: center; width: 250px">Full Name</th>
+                <th style="text-align: center">City</th>
+                <th style="text-align: center">State</th>
+                <th style="text-align: center"># Friends</th>
+                <th style="text-align: center">Time (Hours)</th>
+                <th style="text-align: center">Details</th>
+            </tr>
+        </thead>
+        <!--
+        <tfoot>
+            <tr>
+                <th>Active</th>
+                <th>Username</th>
+                <th>Phone#</th>
+                <th>Fullname</th>
+                <th>City</th>
+                <th>State</th>
+                <th># Friends</th>
+                <th>Time (Hours)</th>
+                <th>Details</th>
+            </tr>
+        </tfoot>
+        -->
+        {% if users %}
+        <tbody>
+          {% for user in users %}
+          <tr class="gradeX">
+                <td align="center"><img alt="True" src="{{ user.icon_status }}" title="{{ user.icon_title }}"></td>
+                <td>{{ user.username }}</td>
+                <td align="center">{{ user.phone }}</td>
+                <td>{{ user.fullname }}</td>
+                <td>{{ user.city }}</td>
+                <td>{{ user.state }}</td>
+                <td align="center">{{ user.friends }}</td>
+                <td align="center">{{ user.time }}</td>
+                <td><a href="{{ user.detail }}">More</a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% endif %}
+    </table>
+    </div>
+</div>
+<!-- END EXAMPLE TABLE PORTLET-->
+<!-- BEGIN EXAMPLE TABLE PORTLET-->
+</div>
+{% endblock %}
+
+
+{% block contentjs %}
+<script type="text/javascript">
+
+jQuery.fn.DataTable.ext.type.search.phoneNumber = function ( data ) {
+    return ! data ?
+        '' :
+        typeof data === 'string' ?
+            data + data.replace(/[^0-9]/g, '') :
+            data;
+};
+
+jQuery(document).ready(function($) {
+
+    $('#allUsersDisplay').dataTable( {
+      "order": [[ 0, "desc" ]],
+
+      "columnDefs": [
+          {
+              "targets": [ 8 ],
+              "orderable": false
+          },
+          {
+              type: "phoneNumber",
+              targets: 2
+          },
+          { type: 'alt-string', targets: 0 }
+
+
+      ],
+      /*
+      "aaSorting": [],
+        "aoColumnDefs": [
+        { 'bSortable': false, 'aTargets': [ 0,8 ] }
+      ],
+       */
+      "pagingType": "full"
+    } );
+});
+
+
+</script>
+{% endblock %}

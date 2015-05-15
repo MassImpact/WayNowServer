@@ -1,0 +1,94 @@
+{% url 'index' as url_index %}
+{% url 'stats' as url_stats %}
+{% url 'all_users' as url_all_users %}
+{% url 'technical' as url_technical %}
+{% url 'maps' as url_maps %}
+{% url 'profile' as url_profile %}
+{% url 'community' as url_community %}
+<div class="page-sidebar navbar-collapse collapse">
+            <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                <li class="sidebar-toggler-wrapper">
+                    <div class="sidebar-toggler">
+                    </div>
+                </li>
+                <li><form class="sidebar-search " action="/dashboard/search" method="POST"></form></li>
+                <!--li class="sidebar-search-wrapper">
+                   <form class="sidebar-search " action="/dashboard/search" method="POST">
+                        <a href="javascript:;" class="remove">
+                            <i class="icon-close"></i>
+                        </a>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search...">
+							<span class="input-group-btn">
+							<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+							</span>
+                        </div>
+                    </form>
+                </li-->
+                <li class="start {% if request.path == url_index %}active open{% endif %}">
+                    <a href="javascript:;">
+                        <i class="icon-home"></i>
+                        <span class="title">Dashboard</span>
+                        <span class="selected"></span>
+                        <span class="arrow {% if request.path == url_index %}open{% endif %}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="start {% if request.path == url_index %}active{% endif %}">
+                            <a href="/dashboard">Dashboard</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{% if request.path == url_all_users %}active open{% endif %}">
+                    <a href="javascript:;">
+                        <i class="icon-users"></i>
+                        <span class="title">All Users</span>
+                        <span class="arrow {% if request.path == url_all_users %}open{% endif %}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="{% if request.path == url_all_users %}active{% endif %}">
+                            <a href="/dashboard/all-users">
+                                All Users</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{% if request.path == url_technical %}active open{% endif %}">
+                    <a href="javascript:;">
+                        <i class="fa fa-database"></i>
+                        <span class="title">Technical</span>
+                        <span class="arrow "></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="{% if request.path == url_technical %}active{% endif %}">
+                            <a href="/dashboard/technical">
+                                Technical
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{% if request.path == url_stats %}active open{% endif %}">
+                    <a href="javascript:;">
+                        <i class="icon-bar-chart"></i>
+                        <span class="title">Stats</span>
+                        <span class="arrow {% if request.path == url_stats %}open{% endif %}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="{% if request.path == url_stats %}active{% endif %}">
+                            <a href="{% url 'stats' %}">Stats</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{% if request.path == url_maps %}active open{% endif %} last">
+                    <a href="javascript:;">
+                        <i class="icon-pointer"></i>
+                        <span class="title">Super Map</span>
+                        <span class="arrow {% if request.path == url_maps %}open{% endif %}"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="{% if request.path == url_maps %}active{% endif %}">
+                            <a href="/dashboard/maps/">Super Map</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- END SIDEBAR MENU -->
+</div>

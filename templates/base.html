@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+<meta charset="utf-8"/>
+<title>{% block title %}{% endblock %}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
+<link href="{% static 'global/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'global/plugins/simple-line-icons/simple-line-icons.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'global/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'global/plugins/uniform/css/uniform.default.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'global/plugins/bootstrap-switch/css/bootstrap-switch.min.css' %}" rel="stylesheet" type="text/css"/>
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="{% static 'global/css/components.css' %}" id="style_components" rel="stylesheet" type="text/css"/>
+<link href="{% static 'global/css/plugins.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'admin/layout/css/layout.css' %}" rel="stylesheet" type="text/css"/>
+<link id="style_color" href="{% static 'admin/layout/css/themes/default.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'admin/layout/css/custom.css' %}" rel="stylesheet" type="text/css"/>
+<!-- END THEME STYLES -->
+{% block contentcss %}
+    {% endblock %}
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="{% static 'global/plugins/respond.min.js' %}"></script>
+<script src="{% static 'global/plugins/excanvas.min.js' %}"></script>
+<![endif]-->
+
+<!--
+<link href="{% static 'global/plugins/datatables/media/css/jquery.dataTables.css' %}" rel="stylesheet" type="text/css"/>
+-->
+
+<link href="{% static 'global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css' %}" rel="stylesheet" type="text/css"/>
+
+
+<script src="{% static 'global/scripts/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'global/scripts/jquery.dataTables.js' %}" type="text/javascript"></script>
+<script src="{% static 'global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js' %}" type="text/javascript"></script>
+
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="{% static 'global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'global/plugins/bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'global/plugins/jquery-slimscroll/jquery.slimscroll.min.js' %}" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<script src="{% static 'global/scripts/metronic.js' %}" type="text/javascript"></script>
+<script src="{% static 'admin/layout/scripts/layout.js' %}" type="text/javascript"></script>
+<script src="{% static 'admin/pages/scripts/components-pickers.js' %}"></script>
+<script>
+jQuery(document).ready(function() {
+    Metronic.init(); // init metronic core components
+    Layout.init(); // init current layout
+});
+</script>
+{% block contentjs %}
+    {% endblock %}
+<!-- END JAVASCRIPTS -->
+<link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<body class="page-header-fixed page-quick-sidebar-over-content">
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+	<!-- BEGIN HEADER INNER -->
+      {% include 'dashboard/header.html' %}
+	<!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        {% include 'dashboard/siderbar.html' %}
+    </div>
+	<!-- END SIDEBAR -->
+	<!-- BEGIN CONTENT -->
+	<div class="page-content-wrapper">
+		<div class="page-content">
+			<h3 class="page-title">
+				{% block content-title %}
+				{% endblock %}
+			</h3>
+			<div class="page-bar">
+				{% block breadcrumb %}
+				{% endblock %}
+			</div>
+
+			<div class="row">
+			{% block content %}
+				{% endblock %}
+			</div>
+		</div>
+    </div>
+	<!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+	<div class="page-footer-inner">
+		 2014 &copy; Carmunity Inc.
+	</div>
+	<div class="scroll-to-top">
+		<i class="icon-arrow-up"></i>
+	</div>
+</div>
+<!-- END FOOTER -->
+</body>
+<!-- END BODY -->
+</html>
